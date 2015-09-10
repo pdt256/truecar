@@ -1,19 +1,19 @@
 <?php
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use pdt256\truecar\Lib\DoctrineTestCase;
+use pdt256\truecar\Lib\DoctrineHelper;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-class DoctrineTest extends DoctrineTestCase
-{
-    public function getEntityManager()
-    {
-        return $this->entityManager;
-    }
-};
+$doctrine = new DoctrineHelper(new Doctrine\Common\Cache\ArrayCache());
+$doctrine->setup([
+    'driver' => 'pdo_sqlite',
+    'memory' => true,
+]);
 
-$doctrineTest = new DoctrineTest;
-$doctrineTest->setupEntityManager();
-$entityManager = $doctrineTest->getEntityManager();
+$entityManager = $doctrine->getEntityManager();
+
+// Fix MySQL enum
+$platform = $entityManager->getConnection()->getDatabasePlatform();
+$platform->registerDoctrineTypeMapping('enum', 'string');
 
 return ConsoleRunner::createHelperSet($entityManager);

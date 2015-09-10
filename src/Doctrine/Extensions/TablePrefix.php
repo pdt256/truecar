@@ -25,7 +25,7 @@ class TablePrefix implements \Doctrine\Common\EventSubscriber
             return;
         }
 
-        if (false !== strpos($classMetadata->namespace, 'kommerce')) {
+        if (false !== strpos($classMetadata->namespace, 'truecar')) {
             $classMetadata->setPrimaryTable(['name' => $this->prefix . $classMetadata->getTableName()]);
 
             foreach ($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
