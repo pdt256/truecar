@@ -56,12 +56,17 @@ class VehicleRepositoryTest extends DoctrineTestCase
 
         $mpgReport = $this->vehicleRepository->getMakeMPGReport();
 
-        $this->assertTrue($mpgReport[0]->getMake() instanceof Make);
         $this->assertSame('Ford', $mpgReport[0]->getMake()->getName());
         $this->assertSame(3, $mpgReport[0]->getVehicleCount());
         $this->assertSame(10, $mpgReport[0]->getMinimum());
         $this->assertSame(32, $mpgReport[0]->getMaximum());
         $this->assertEquals(18, $mpgReport[0]->getAverage(), null, FLOAT_DELTA);
+
+        $this->assertSame('Chevrolet', $mpgReport[1]->getMake()->getName());
+        $this->assertSame(2, $mpgReport[1]->getVehicleCount());
+        $this->assertSame(10, $mpgReport[1]->getMinimum());
+        $this->assertSame(33, $mpgReport[1]->getMaximum());
+        $this->assertEquals(21.5, $mpgReport[1]->getAverage(), null, FLOAT_DELTA);
     }
 
     private function setupVehicle()

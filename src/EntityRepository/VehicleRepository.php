@@ -10,16 +10,14 @@ class VehicleRepository extends AbstractEntityRepository implements VehicleRepos
         $qb = $this->getQueryBuilder();
 
         $rows = $qb
+            ->select('make')
             ->addSelect('AVG(vehicle.mpg) AS mpg_average')
             ->addSelect('MIN(vehicle.mpg) AS mpg_minimum')
             ->addSelect('MAX(vehicle.mpg) AS mpg_maximum')
             ->addSelect('COUNT(vehicle) AS vehicle_count')
-            ->from('truecar:Vehicle', 'vehicle')
 
             ->from('truecar:Make', 'make')
-            ->where('vehicle.make = make')
-
-            ->addSelect('make')
+            ->leftJoin('make.vehicles', 'vehicle')
             ->groupBy('make')
 
             ->getQuery()
