@@ -16,7 +16,7 @@ class Make implements EntityInterface
     public function __construct($name = null)
     {
         $this->setCreated();
-        $this->setname($name);
+        $this->setName($name);
         $this->vehicles = new ArrayCollection;
     }
 
