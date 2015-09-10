@@ -17,7 +17,7 @@ class VehicleRepository extends AbstractEntityRepository implements VehicleRepos
             ->addSelect('COUNT(vehicle) AS vehicle_count')
 
             ->from('truecar:Make', 'make')
-            ->leftJoin('make.vehicles', 'vehicle')
+            ->innerJoin('make.vehicles', 'vehicle')
             ->groupBy('make')
 
             ->getQuery()
