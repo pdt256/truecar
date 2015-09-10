@@ -1,7 +1,7 @@
 <?php
 namespace pdt256\truecar\EntityRepository;
 
-use pdt256\truecar\Entity\MPGReport;
+use pdt256\truecar\DataStructure\Report\MPGReport;
 
 class VehicleRepository extends AbstractEntityRepository implements VehicleRepositoryInterface
 {

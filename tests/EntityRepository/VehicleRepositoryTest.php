@@ -1,9 +1,7 @@
 <?php
 namespace pdt256\truecar\EntityRepository;
 
-use MyProject\Proxies\__CG__\stdClass;
 use pdt256\truecar\Entity\Make;
-use pdt256\truecar\Entity\User;
 use pdt256\truecar\Entity\Vehicle;
 use pdt256\truecar\tests\Helper\DoctrineTestCase;
 

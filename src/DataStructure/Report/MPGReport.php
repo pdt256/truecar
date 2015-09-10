@@ -1,5 +1,7 @@
 <?php
-namespace pdt256\truecar\Entity;
+namespace pdt256\truecar\DataStructure\Report;
+
+use pdt256\truecar\Entity\Make;
 
 class MPGReport
 {
