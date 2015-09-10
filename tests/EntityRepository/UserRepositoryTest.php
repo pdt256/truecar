@@ -2,7 +2,6 @@
 namespace pdt256\truecar\EntityRepository;
 
 use pdt256\truecar\Entity\User;
-use pdt256\truecar\tests\Helper;
 use pdt256\truecar\tests\Helper\DoctrineTestCase;
 
 class UserRepositoryTest extends DoctrineTestCase
@@ -69,10 +68,7 @@ class UserRepositoryTest extends DoctrineTestCase
 
     private function setupUser()
     {
-        $user = new User;
-        $user->setEmail('john@example.com');
-        $user->setFirstname('John');
-        $user->setLastName('Doe');
+        $user = $this->getDummyUser();
 
         $this->userRepository->create($user);
 

@@ -3,6 +3,7 @@ namespace pdt256\truecar\Lib;
 
 use Doctrine\ORM\EntityManager;
 use pdt256\truecar\EntityRepository\UserRepositoryInterface;
+use pdt256\truecar\EntityRepository\VehicleRepositoryInterface;
 
 class FactoryRepository
 {
@@ -20,5 +21,13 @@ class FactoryRepository
     public function getUser()
     {
         return $this->entityManager->getRepository('truecar:User');
+    }
+
+    /**
+     * @return VehicleRepositoryInterface
+     */
+    public function getVehicle()
+    {
+        return $this->entityManager->getRepository('truecar:Vehicle');
     }
 }

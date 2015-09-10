@@ -2,6 +2,9 @@
 namespace pdt256\truecar\tests\Helper;
 
 use Doctrine;
+use pdt256\truecar\Entity\Make;
+use pdt256\truecar\Entity\User;
+use pdt256\truecar\Entity\Vehicle;
 use pdt256\truecar\Lib\DoctrineHelper;
 use pdt256\truecar\Lib\FactoryRepository;
 
@@ -85,5 +88,32 @@ abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
     protected function rollback()
     {
         $this->entityManager->getConnection()->rollback();
+    }
+
+    protected function getDummyUser()
+    {
+        $user = new User;
+        $user->setFirstName('John');
+        $user->setLastName('Doe');
+        $user->setEmail('john@example.com');
+        $user->setPassword('xxxx');
+
+        return $user;
+    }
+
+    protected function getDummyVehicle()
+    {
+        $vehicle = new Vehicle;
+        $vehicle->setMPG(25);
+
+        return $vehicle;
+    }
+
+    protected function getDummyMake()
+    {
+        $make = new Make;
+        $make->setName('Ford');
+
+        return $make;
     }
 }

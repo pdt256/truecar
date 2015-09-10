@@ -14,9 +14,17 @@ class Vehicle implements EntityInterface
     /** @var int */
     protected $mpg;
 
-    public function __construct()
+    public function __construct($make = null, $mpg = null)
     {
         $this->setCreated();
+
+        if ($make !== null) {
+            $this->setMake($make);
+        }
+
+        if ($mpg !== null) {
+            $this->setMPG($mpg);
+        }
     }
 
     public function setUser(User $user)

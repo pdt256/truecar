@@ -18,6 +18,8 @@
             </options>
         </id>
 
+        <field name="name" type="string" length="64"/>
+
         <field name="created" type="integer">
             <options>
                 <option name="unsigned">true</option>
@@ -29,6 +31,8 @@
                 <option name="unsigned">true</option>
             </options>
         </field>
+
+        <one-to-many field="vehicles" target-entity="Vehicle" mapped-by="make" fetch="EXTRA_LAZY"/>
 
     </entity>
 
