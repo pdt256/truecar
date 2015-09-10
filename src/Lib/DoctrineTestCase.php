@@ -1,8 +1,7 @@
 <?php
-namespace pdt256\truecar\tests\Helper;
+namespace pdt256\truecar\Lib;
 
 use Doctrine;
-use pdt256\truecar\Lib\FactoryRepository;
 
 abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -45,13 +44,16 @@ abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
             $config->setResultCacheImpl($cacheDriver);
         }
 
-        $dbParams = [
+        $this->entityManager = Doctrine\ORM\EntityManager::create($this->getDbParams(), $config);
+        $this->entityManagerConfiguration = $this->entityManager->getConnection()->getConfiguration();
+    }
+
+    protected function getDbParams()
+    {
+        return [
             'driver' => 'pdo_sqlite',
             'memory' => true,
         ];
-
-        $this->entityManager = Doctrine\ORM\EntityManager::create($dbParams, $config);
-        $this->entityManagerConfiguration = $this->entityManager->getConnection()->getConfiguration();
     }
 
     private function setupTestSchema()

@@ -2,9 +2,10 @@
 namespace pdt256\truecar\EntityRepository;
 
 use pdt256\truecar\Entity\User;
+use pdt256\truecar\Lib\DoctrineTestCase;
 use pdt256\truecar\tests\Helper;
 
-class UserRepositoryTest extends Helper\DoctrineTestCase
+class UserRepositoryTest extends DoctrineTestCase
 {
     /** @var UserRepositoryInterface */
     protected $userRepository;

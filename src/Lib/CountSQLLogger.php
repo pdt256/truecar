@@ -1,5 +1,5 @@
 <?php
-namespace pdt256\truecar\tests\Helper;
+namespace pdt256\truecar\Lib;
 
 use Doctrine\DBAL\Logging\SQLLogger;
 

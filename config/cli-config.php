@@ -1,6 +1,6 @@
 <?php
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use pdt256\truecar\tests\Helper\DoctrineTestCase;
+use pdt256\truecar\Lib\DoctrineTestCase;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

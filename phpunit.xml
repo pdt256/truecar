@@ -17,6 +17,10 @@
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="false">
             <directory>src</directory>
+            <exclude>
+                <file>src/Lib/CountSQLLogger.php</file>
+                <file>src/Lib/DoctrineTestCase.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
