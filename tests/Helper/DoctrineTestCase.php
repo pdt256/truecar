@@ -1,18 +1,20 @@
 <?php
-namespace pdt256\truecar\Lib;
+namespace pdt256\truecar\tests\Helper;
 
 use Doctrine;
+use pdt256\truecar\Lib\DoctrineHelper;
+use pdt256\truecar\Lib\FactoryRepository;
 
 abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
 {
     /** @var Doctrine\ORM\EntityManager */
     protected $entityManager;
 
-    /** @var Doctrine\DBAL\Configuration */
-    protected $entityManagerConfiguration;
-
     /** @var CountSQLLogger */
     protected $countSQLLogger;
+
+    /** @var DoctrineHelper */
+    protected $doctrineHelper;
 
     public function __construct($name = null, array $data = array(), $dataName = '')
     {
@@ -29,31 +31,13 @@ abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
 
     private function getConnection()
     {
-        $paths = [__DIR__ . '/../Entity'];
-        $isDevMode = true;
-
-        $config = Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-        $xmlDriver = new Doctrine\ORM\Mapping\Driver\XmlDriver(realpath(__DIR__ . '/../../src/Doctrine/Mapping'));
-        $config->setMetadataDriverImpl($xmlDriver);
-        $config->addEntityNamespace('truecar', 'pdt256\truecar\Entity');
-
-        $cacheDriver = new Doctrine\Common\Cache\ArrayCache;
-        if ($cacheDriver !== null) {
-            $config->setMetadataCacheImpl($cacheDriver);
-            $config->setQueryCacheImpl($cacheDriver);
-            $config->setResultCacheImpl($cacheDriver);
-        }
-
-        $this->entityManager = Doctrine\ORM\EntityManager::create($this->getDbParams(), $config);
-        $this->entityManagerConfiguration = $this->entityManager->getConnection()->getConfiguration();
-    }
-
-    protected function getDbParams()
-    {
-        return [
+        $this->doctrineHelper = new DoctrineHelper(new Doctrine\Common\Cache\ArrayCache());
+        $this->doctrineHelper->setup([
             'driver' => 'pdo_sqlite',
             'memory' => true,
-        ];
+        ]);
+
+        $this->entityManager = $this->doctrineHelper->getEntityManager();
     }
 
     private function setupTestSchema()
@@ -80,7 +64,7 @@ abstract class DoctrineTestCase extends \PHPUnit_Framework_TestCase
 
     private function setSqlLogger(Doctrine\DBAL\Logging\SQLLogger $sqlLogger)
     {
-        $this->entityManagerConfiguration->setSQLLogger($sqlLogger);
+        $this->doctrineHelper->setSQLLogger($sqlLogger);
     }
 
     protected function getTotalQueries()

@@ -18,8 +18,8 @@
         <whitelist addUncoveredFilesFromWhitelist="false">
             <directory>src</directory>
             <exclude>
-                <file>src/Lib/CountSQLLogger.php</file>
-                <file>src/Lib/DoctrineTestCase.php</file>
+                <file>src/Lib/DoctrineHelper.php</file>
+                <file>src/Doctrine/Extensions/TablePrefix.php</file>
             </exclude>
         </whitelist>
     </filter>
